@@ -1,15 +1,7 @@
-import threading
-import discord
-from discord.ext import commands
 import os
 import requests
 from json import loads
 import random
-import time
-intents = discord.Intents.all()
-intents.members = True
-client = discord.Client(command_prefix=">", intents=intents)
-s = requests.Session()
 
 logo = '''
 \033[38;5;5m▒███████▒ ▒█████   ██▀███   ▒█████  
@@ -42,6 +34,7 @@ class image_scraper:
     self.file = open(f"{self.num}.png", "wb")
     self.file.write(self.res.content)
     self.file.close()
+    print(f'\033[38;5;77m[+] successfully scraped pfp from {self.user_id}')
   def scraper(self):
      self.r = requests.get(f"https://discord.com/api/v8/channels/{self.channel_id}/messages", headers=self.headers)
      jsonnn = loads(self.r.text)
@@ -49,14 +42,8 @@ class image_scraper:
      os.remove('users.txt')
      with open("users.txt","a", errors="ignore") as a:  
        for i in jsonnn:
-         for id in self.lst:
-           if str(i['author']['id']) == id:
-             pass
-           else:
-             a.write(i['author']['id'])
-             a.write('\n')
-             break
-         self.lst.append(i['author']['id'])
+          a.write(i['author']['id'])
+          a.write('\n')
   def run(self, id):
     self.get_hash(id)
     self.get_image()
