@@ -4,6 +4,8 @@ scrapes discord profile pictures from a guild fast
  <img src="./prewiew.png">
 </a>
 </p>
+
+
 ## Installation
 - Click on the `pfp-scraper.zip`.
 - Extract the zip.
