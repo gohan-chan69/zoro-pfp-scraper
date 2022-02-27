@@ -1,7 +1,15 @@
+import threading
+import discord
+from discord.ext import commands
 import os
 import requests
 from json import loads
 import random
+import time
+intents = discord.Intents.all()
+intents.members = True
+client = discord.Client(command_prefix=">", intents=intents)
+s = requests.Session()
 
 logo = '''
 \033[38;5;5m▒███████▒ ▒█████   ██▀███   ▒█████  
@@ -16,7 +24,7 @@ logo = '''
 ░                                   '''
 class image_scraper:
   def __init__(self, channel_id):
-    self.token = "TOKEN HERE!!!!!!" #ToKeN HeRe!!!
+    self.token = "token here" #ToKeN HeRe!!!
     self.headers = {
       "Authorization": f"{self.token}"
     }
@@ -42,8 +50,12 @@ class image_scraper:
      os.remove('users.txt')
      with open("users.txt","a", errors="ignore") as a:  
        for i in jsonnn:
-          a.write(i['author']['id'])
-          a.write('\n')
+         if i['author']['id'] not in self.lst:
+            a.write(i['author']['id'])
+            a.write('\n')
+            self.lst.append(i['author']['id'])
+
+           
   def run(self, id):
     self.get_hash(id)
     self.get_image()
