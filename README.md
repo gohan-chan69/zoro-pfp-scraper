@@ -3,6 +3,7 @@ scrapes discord profile pictures from a guild fast
 <p align="center">
  <img src="./prewiew.png">
 </a>
+<img align="left" width="47%" src="https://github-readme-stats.vercel.app/api?username=gohan-chan69&count_private=true&show_icons=true&theme=radical" />
 </p>
 
 
